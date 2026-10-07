@@ -8,7 +8,7 @@ metadata:
         - MERMAIL_API_KEY
     primaryEnv: MERMAIL_API_KEY
     homepage: https://docs.mermail.app/ai/skills
-    emoji: "🛡️"
+    emoji: 🛡️
 ---
 
 # Mermail Responsible Disclosure
@@ -110,4 +110,3 @@ Never include live secrets, weaponized payloads, private report contents not nee
 - "Draft a missing-evidence reply, but do not send it."
 - "Show the exact approved reply and wait for me before sending."
 - "This case is accepted. Prepare a 250 USDC-on-Base payout review to the destination I provide and stop before the transfer."
-

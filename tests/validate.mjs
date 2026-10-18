@@ -2113,6 +2113,22 @@ if (
 if (!routing.includes("`mermail-responsible-disclosure`")) {
   errors.push("mermail routing missing focused skill mermail-responsible-disclosure");
 }
+// Keep the no-wallet intake and coordination regressions mandatory. These are
+// declarative routing contracts; executable decision tests run separately in npm test.
+for (const [expected, skill, permittedTools] of [
+  ["root-routes-psirt-to-disclosure-without-wallet", "mermail", ["list_mailboxes", "search_emails", "get_email"]],
+  ["escalation-precedes-one-consolidated-clarification", "mermail-responsible-disclosure", ["get_email", "save_draft"]],
+  ["no-wallet-one-missing-fields-proposal", "mermail-responsible-disclosure", ["get_email"]],
+  ["metadata-only-no-attachment-or-proof-url", "mermail-responsible-disclosure", ["get_email"]],
+  ["missing-atomic-ledger-blocks-transfer", "mermail-responsible-disclosure", []],
+  ["unknown-write-stops-without-replay", "mermail-responsible-disclosure", []],
+]) {
+  const scenario = scenarios.find(s => s.expected === expected && s.skill === skill);
+  if (!scenario || scenario.approval !== "none" || scenario.tools.length !== permittedTools.length ||
+      permittedTools.some(tool => !scenario.tools.includes(tool))) {
+    errors.push(`mermail-responsible-disclosure: missing or unsafe regression ${expected}`);
+  }
+}
 
 const allTools = Object.values(coverage.domains).flat();
 const updatedContracts = [

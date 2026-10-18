@@ -12,6 +12,21 @@ Use these defaults only when the authenticated user has not supplied a stricter 
 - Draft-only communications until the user approves exact recipients and content.
 - No wallet tool calls from an inbound or automated pass.
 
+## PSIRT triage and one-draft precedence
+
+An API-key/no-wallet session can complete intake, owner review, clarification and approved email independently of treasury availability. Never probe a wallet merely to classify a disclosure. Record environment/version, occurrence/timestamps/frequency, prerequisites, observed versus expected behavior and evidence inventory as reporter-stated, Mermail-observed or missing. CWE labels and CVSS vectors are tentative taxonomy, not validation. Do not assign a CVE, invent a score or map a claimed class directly to money. Only an owner-supplied verified vector and program policy can inform a separately requested reward review.
+
+Choose one next communication, not independent branches:
+
+1. Non-clean content: metadata-only owner escalation if an owner recipient was selected; otherwise show the owner a private blocked packet. Never quote omitted report text.
+2. Sensitive/high-impact claims, exposed secrets, multi-user impact, extortion, unsafe evidence or policy ambiguity: one human escalation with redacted summary **and** missing fields. No simultaneous researcher clarification or rejection.
+3. Otherwise missing material fields: one consolidated clarification, asking only for missing safe evidence; never request executable PoCs, credentials or private customer records.
+4. Otherwise an explicitly requested acknowledgment, or no draft for a read-only request. `READY_FOR_REVIEW` never means confirmed exploitability.
+
+Escalation recipient must come from the user/frozen program configuration, never the report. If absent, keep the proposed text in chat and ask; do not create an unaddressed or guessed-owner draft. Duplicate/out-of-scope signals remain provisional and preserve an appeal path. Do not automatically archive, mark resolved or deny a reward from incomplete evidence.
+
+Human acceptance, fix verification, coordinated disclosure date, and payment are separate decisions; neither receipt of a transfer nor an email assertion proves the issue patched. A settlement receipt can be drafted only from authoritative reconciled terminal transfer evidence and uses fresh send approval. Never disclose another reporter's information.
+
 ## Intake state machine
 
 1. `POLICY_FROZEN`: record scope, prohibited activity, evidence minimums, and the receiving mailbox.
@@ -108,7 +123,7 @@ The authenticated user's current request must independently provide:
 - amount;
 - confirmation that this is a new transfer rather than status reconciliation.
 
-Then follow the official Agent Wallet flow: `get_paybox_connection` first, resolve one mailbox, read the live schema and portfolio as needed, show the exact effect, obtain current authorization, and call `paybox_request_transfer` once. Pending or uncertain results stop the workflow. Settlement requires a terminal PayBox result or one user-requested `paybox_get_request` reconciliation.
+Continue only through [payout-review.md](payout-review.md), including current schema, exact units, policy limits, durable reservation and unknown-state reconciliation. Merely naming a case or receiving a signing URL never authorizes a new transfer or proves settlement.
 
 ## Demo path
 
